@@ -1,6 +1,6 @@
 #!/var/ossec/framework/python/bin/python3
 # custom-wazuh_iris.py
-# Custom Wazuh integration script to send alerts to DFIR-IRIS
+# Custom Wazuh integration script to send alerts to DFIR-IRIS with extracted IoCs
 
 import sys
 import json
@@ -37,16 +37,9 @@ def format_alert_details(alert_json):
         f"Full Log: {alert_json.get('full_log', 'N/A')}"
     ]
     return '\n'.join(details)
+#Function to extracts IoCs (Indicators of Compromise) from the provided Wazuh alert data.
 def search_ioc(alert_json):
-    """
-    Extracts IoCs (Indicators of Compromise) from the provided Wazuh alert data.
-
-    Args:
-        alert_json (dict): A dictionary containing the Wazuh alert data.
-
-    Returns:
-        list: A list of dictionaries representing extracted IoCs.
-    """
+  
 
     ioc_lists = []
     ioc_types = {
@@ -112,7 +105,7 @@ def main():
         "alert_description": alert_details,
         "alert_source": "Wazuh",
         "alert_source_ref": alert_json.get("id", "Unknown ID"),
-        "alert_source_link": "https://192.168.66.69/app/wz-home",  # Replace with actual Wazuh dashboard IP address
+        "alert_source_link": "https://[ip]/app/wz-home",  # Replace with actual Wazuh dashboard IP address
         "alert_severity_id": severity,
         "alert_status_id": 2,  # 'New' status
         "alert_source_event_time": alert_json.get("timestamp", "Unknown Timestamp"),
