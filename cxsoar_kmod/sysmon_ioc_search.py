@@ -1,13 +1,5 @@
 def search_ioc(alert_json):
-  """
-  Extracts IoCs from Sysmon alerts based on relevant fields.
-
-  Args:
-      alert_json (dict): A dictionary containing the Wazuh alert data.
-
-  Returns:
-      list: A list of dictionaries representing extracted IoCs.
-  """
+ # Extracts IoCs from Sysmon alerts based on relevant fields.
 
   ioc_lists = []
   ioc_types = {
