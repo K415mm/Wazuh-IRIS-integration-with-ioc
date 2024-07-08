@@ -7,6 +7,7 @@ import json
 import requests
 import logging
 from datetime import datetime
+from cxsoar_kmod.regular_ioc_search import search_ioc as regular_search_ioc
 
 # Configure logging
 logging.basicConfig(filename='/var/ossec/logs/integrations.log', level=logging.INFO, 
@@ -75,7 +76,7 @@ def main():
         severity = 1
 
     # Generate request
-    ioc_lists = search_ioc(alert_json)
+    ioc_lists = regular_search_ioc(alert_json)
     payload = json.dumps({
         "alert_title": alert_json.get("rule", {}).get("description", "No Description"),
         "alert_description": alert_details,
