@@ -7,6 +7,7 @@ import json
 import requests
 import logging
 from datetime import datetime
+from cxsoar_kmod.sysmon_ioc_search import search_ioc as sysmon_search_ioc
 from cxsoar_kmod.regular_ioc_search import search_ioc as regular_search_ioc
 
 # Configure logging
@@ -39,6 +40,19 @@ def format_alert_details(alert_json):
     ]
     return '\n'.join(details)
 #Function to extracts IoCs (Indicators of Compromise) from the provided Wazuh alert data.
+def is_sysmon_alert(alert_json):
+  """
+  Checks if the provided alert belongs to a Sysmon group.
+
+  Args:
+      alert_json (dict): A dictionary containing the Wazuh alert data.
+
+  Returns:
+      bool: True if it's a Sysmon alert, False otherwise.
+  """
+
+  groups = alert_json.get('groups', [])
+  return 'sysmon' in groups
 def main():
     # Read parameters when integration is run
     if len(sys.argv) < 4:
@@ -76,7 +90,10 @@ def main():
         severity = 1
 
     # Generate request
-    ioc_lists = regular_search_ioc(alert_json)
+    if is_sysmon_alert(alert_json):
+        ioc_lists = sysmon_search_ioc(alert_json)
+    else:
+        ioc_lists = regular_search_ioc(alert_json)
     payload = json.dumps({
         "alert_title": alert_json.get("rule", {}).get("description", "No Description"),
         "alert_description": alert_details,
