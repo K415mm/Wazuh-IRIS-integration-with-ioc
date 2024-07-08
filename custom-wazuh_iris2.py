@@ -51,7 +51,7 @@ def is_sysmon_alert(alert_json):
       bool: True if it's a Sysmon alert, False otherwise.
   """
 
-  groups = alert_json.get('groups', [])
+  groups = alert_json.get("rule",{}).get('groups', [])
   return 'sysmon' in groups
 def main():
     # Read parameters when integration is run
@@ -99,7 +99,7 @@ def main():
         "alert_description": alert_details,
         "alert_source": "Wazuh",
         "alert_source_ref": alert_json.get("id", "Unknown ID"),
-        "alert_source_link": "https://[ip]/app/wz-home",  # Replace with actual Wazuh dashboard IP address
+        "alert_source_link": "https://192.168.0.69/app/wz-home",  # Replace with actual Wazuh dashboard IP address
         "alert_severity_id": severity,
         "alert_status_id": 2,  # 'New' status
         "alert_source_event_time": alert_json.get("timestamp", "Unknown Timestamp"),
