@@ -8,6 +8,7 @@ def search_ioc(alert_json):
         "ipv4": lambda alert: alert.get("data", {}).get("srcip"),
         "hostname": lambda alert: alert.get("data", {}).get("hostname"),
         "url": lambda alert: alert.get("data", {}).get("url"),
+        "process_id": lambda alert: alert.get("data", {}).get("win",{}).get("system",{}).get("processID"),
     }
 
     for ioc_type, extractor in ioc_types.items():
