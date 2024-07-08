@@ -12,7 +12,7 @@ def search_ioc(alert_json):
   ioc_lists = []
   ioc_types = {
         "process_id": lambda alert: alert.get("data", {}).get("win",{}).get("system",{}).get("processID"),
-        "sourceIp": lambda alert: alert.get("data", {}).get("eventdata",{}).get("sourceIp"),
+        "sourceIp": lambda alert: alert.get("data", {}).get("win",{}).get("eventdata",{}).get("sourceIp"),
     }
   for ioc_type, extractor in ioc_types.items():
         ioc_value = extractor(alert_json)
