@@ -1,4 +1,5 @@
 #!/var/ossec/framework/python/bin/python3
+# k415 remastering
 # custom-wazuh_iris2.py
 # Custom Wazuh integration script to send alerts to DFIR-IRIS with extracted IoCs
 
