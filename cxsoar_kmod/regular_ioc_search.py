@@ -19,7 +19,7 @@ def search_ioc(alert_json):
                 "ioc_description": f"Extracted from Wazuh alert (type: {ioc_type})",
                 "ioc_tlp_id": 1,  # Adjust TLP (Traffic Light Protocol) ID based on your needs
                 "ioc_type_id": 2,  # Adjust IoC type ID based on your Iris DFIR configuration
-                "ioc_tags": "tag1,tag2",  # Adjust tags as needed
+                "ioc_tags": "cxsoar,cxsoar_windows",  # Adjust tags as needed
             })
 
     return ioc_lists
