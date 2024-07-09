@@ -1,5 +1,5 @@
 #!/var/ossec/framework/python/bin/python3
-# custom-wazuh_iris.py
+# custom-wazuh_iris2.py
 # Custom Wazuh integration script to send alerts to DFIR-IRIS with extracted IoCs
 
 import sys
