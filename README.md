@@ -19,7 +19,12 @@ IRIS DFIR account with API access
 ```
 Setup:
 
-Save the script as custom-wazuh_iris2.py on your Wazuh server.
+clone the repo then copy the script to the /var/ossec/integrations/
+```
+git clone https://github.com/K415mm/Wazuh-IRIS-integration-with-ioc.git
+cd Wazuh-IRIS-integration-with-ioc
+sudo cp -a . /var/ossec/integrations/
+```
 
 Make the script executable:
  ```
