@@ -3,6 +3,7 @@
 # custom-wazuh_iris2.py
 # Custom Wazuh integration script to send alerts to DFIR-IRIS with extracted IoCs
 
+
 import sys
 import json
 import requests
