@@ -41,16 +41,7 @@ def format_alert_details(alert_json):
     return '\n'.join(details)
 #Function to extracts IoCs (Indicators of Compromise) from the provided Wazuh alert data.
 def is_sysmon_alert(alert_json):
-  """
-  Checks if the provided alert belongs to a Sysmon group.
-
-  Args:
-      alert_json (dict): A dictionary containing the Wazuh alert data.
-
-  Returns:
-      bool: True if it's a Sysmon alert, False otherwise.
-  """
-
+  # Checks if the provided alert belongs to a Sysmon group.
   groups = alert_json.get("rule",{}).get('groups', [])
   return 'sysmon' in groups
 def main():
@@ -99,7 +90,7 @@ def main():
         "alert_description": alert_details,
         "alert_source": "Wazuh",
         "alert_source_ref": alert_json.get("id", "Unknown ID"),
-        "alert_source_link": "https://192.168.0.69/app/wz-home",  # Replace with actual Wazuh dashboard IP address
+        "alert_source_link": "[]/app/wz-home",  # Replace with actual Wazuh dashboard IP address
         "alert_severity_id": severity,
         "alert_status_id": 2,  # 'New' status
         "alert_source_event_time": alert_json.get("timestamp", "Unknown Timestamp"),
