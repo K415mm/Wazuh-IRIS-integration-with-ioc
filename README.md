@@ -58,7 +58,7 @@ XML
 ```
 Restart the Wazuh agent:
 ```
-service wazuh-agent restart
+service wazuh-manager restart
 
 ```
 
